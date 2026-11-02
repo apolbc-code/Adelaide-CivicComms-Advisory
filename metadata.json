@@ -1,0 +1,6 @@
+{
+  "name": "Adelaide CivicComms Advisory",
+  "description": "Strategic digital marketing, PR, and civic constituent engagement consultancy for South Australian local councils, statutory authorities, and not-for-profits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
