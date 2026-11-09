@@ -4,35 +4,36 @@
 
 @layer base {
   :root {
-    --civic-navy: #1B365D;
-    --civic-navy-dark: #12243E;
-    --civic-teal: #008080;
-    --civic-teal-dark: #006666;
-    --civic-teal-light: #E6F3F3;
-    --civic-charcoal: #2C3E50;
-    --civic-offwhite: #F8FAFC;
-    --civic-icegray: #F0F4F8;
+    --civic-navy: #003B5C;
+    --strategic-blue: #0077B6;
+    --community-teal: #2A9D8F;
+    --civic-gold: #D4A017;
+    --charcoal: #333333;
+    --slate-grey: #667085;
+    --soft-grey: #DCE3EA;
+    --off-white: #F7F9FB;
   }
 
   body {
-    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: #2C3E50;
-    background-color: #F8FAFC;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #333333;
+    background-color: #F7F9FB;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    letter-spacing: -0.02em;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    letter-spacing: -0.015em;
   }
 }
 
 /* Accessibility: High-contrast mode enhancements */
 .high-contrast {
-  --civic-navy: #0B192C;
-  --civic-teal: #005F5F;
-  --civic-charcoal: #000000;
+  --civic-navy: #001F33;
+  --strategic-blue: #004D73;
+  --community-teal: #1E6B61;
+  --charcoal: #000000;
   filter: contrast(115%);
 }
 
@@ -46,7 +47,7 @@
   text-decoration-thickness: 2px;
 }
 
-/* Print Styles for Civic Compliance Audit Report */
+/* Print Styles for Executive Civic Reports and Checklists */
 @media print {
   header, footer, .no-print {
     display: none !important;

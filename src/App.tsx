@@ -13,11 +13,13 @@ import { AboutView } from './components/views/AboutView';
 import { ServicesView } from './components/views/ServicesView';
 import { CaseStudiesView } from './components/views/CaseStudiesView';
 import { InsightsView } from './components/views/InsightsView';
+import { ElectionsView } from './components/views/ElectionsView';
 import { ContactView } from './components/views/ContactView';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+  const [auditModalFocus, setAuditModalFocus] = useState<string>('Community Consultation & YourSAy');
   const [highContrast, setHighContrast] = useState(false);
   const [fontSize, setFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal');
 
@@ -25,7 +27,7 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') as PageId;
-      const validPages: PageId[] = ['home', 'about', 'services', 'case-studies', 'insights', 'contact'];
+      const validPages: PageId[] = ['home', 'about', 'services', 'case-studies', 'insights', 'elections', 'contact'];
       if (validPages.includes(hash)) {
         setCurrentPage(hash);
       }
@@ -41,6 +43,13 @@ export default function App() {
     setCurrentPage(page);
     window.location.hash = page === 'home' ? '' : page;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenAuditModal = (focusArea?: string) => {
+    if (focusArea) {
+      setAuditModalFocus(focusArea);
+    }
+    setIsAuditModalOpen(true);
   };
 
   // High contrast effect on root
@@ -60,11 +69,11 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col bg-[#F8FAFC] text-[#2C3E50] transition-all duration-150 ${getFontSizeClass()}`}>
+    <div className={`min-h-screen flex flex-col bg-[#F7F9FB] text-[#333333] transition-all duration-150 ${getFontSizeClass()}`}>
       {/* Skip to Main Content Link for WCAG Accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-teal-600 focus:text-white focus:outline-none focus:ring-2 focus:ring-teal-300"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-[#0077B6] focus:text-white focus:outline-none focus:ring-2 focus:ring-[#D4A017]"
       >
         Skip to main content
       </a>
@@ -73,7 +82,7 @@ export default function App() {
       <Header
         currentPage={currentPage}
         onNavigate={handleNavigate}
-        onOpenAuditModal={() => setIsAuditModalOpen(true)}
+        onOpenAuditModal={handleOpenAuditModal}
         highContrast={highContrast}
         onToggleHighContrast={() => setHighContrast(!highContrast)}
         fontSize={fontSize}
@@ -85,37 +94,43 @@ export default function App() {
         {currentPage === 'home' && (
           <HomeView
             onNavigate={handleNavigate}
-            onOpenAuditModal={() => setIsAuditModalOpen(true)}
+            onOpenAuditModal={handleOpenAuditModal}
           />
         )}
         {currentPage === 'about' && (
           <AboutView
             onNavigate={handleNavigate}
-            onOpenAuditModal={() => setIsAuditModalOpen(true)}
+            onOpenAuditModal={handleOpenAuditModal}
           />
         )}
         {currentPage === 'services' && (
           <ServicesView
             onNavigate={handleNavigate}
-            onOpenAuditModal={() => setIsAuditModalOpen(true)}
+            onOpenAuditModal={handleOpenAuditModal}
           />
         )}
         {currentPage === 'case-studies' && (
           <CaseStudiesView
             onNavigate={handleNavigate}
-            onOpenAuditModal={() => setIsAuditModalOpen(true)}
+            onOpenAuditModal={handleOpenAuditModal}
           />
         )}
         {currentPage === 'insights' && (
           <InsightsView
             onNavigate={handleNavigate}
-            onOpenAuditModal={() => setIsAuditModalOpen(true)}
+            onOpenAuditModal={handleOpenAuditModal}
+          />
+        )}
+        {currentPage === 'elections' && (
+          <ElectionsView
+            onNavigate={handleNavigate}
+            onOpenAuditModal={handleOpenAuditModal}
           />
         )}
         {currentPage === 'contact' && (
           <ContactView
             onNavigate={handleNavigate}
-            onOpenAuditModal={() => setIsAuditModalOpen(true)}
+            onOpenAuditModal={handleOpenAuditModal}
           />
         )}
       </main>
@@ -123,13 +138,14 @@ export default function App() {
       {/* Institutional Footer */}
       <Footer
         onNavigate={handleNavigate}
-        onOpenAuditModal={() => setIsAuditModalOpen(true)}
+        onOpenAuditModal={handleOpenAuditModal}
       />
 
       {/* Global 30-Minute Civic Strategy Audit Modal */}
       <AuditModal
         isOpen={isAuditModalOpen}
         onClose={() => setIsAuditModalOpen(false)}
+        initialFocus={auditModalFocus}
       />
     </div>
   );

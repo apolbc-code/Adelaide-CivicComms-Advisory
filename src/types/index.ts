@@ -1,4 +1,4 @@
-export type PageId = 'home' | 'about' | 'services' | 'case-studies' | 'insights' | 'contact';
+export type PageId = 'home' | 'about' | 'services' | 'case-studies' | 'insights' | 'elections' | 'contact';
 
 export interface AuditQuestionOption {
   id: string;
@@ -34,14 +34,16 @@ export interface AuditResult {
 
 export interface CaseStudy {
   id: string;
+  number: string;
   title: string;
   subtitle: string;
-  clientType: 'Metropolitan Council' | 'Regional LGA' | 'Statutory Authority' | 'Not-For-Profit';
+  clientType: 'Councils & Government' | 'Not-For-Profit' | 'Political & Election' | 'Statutory Authority';
   location: string;
   statutoryMandate: string;
   challenge: string;
-  intervention: string;
-  outcomes: {
+  strategy: string;
+  execution: string;
+  results: {
     metric: string;
     label: string;
     context: string;
@@ -55,16 +57,48 @@ export interface CaseStudy {
   tags: string[];
 }
 
-export interface ServiceDetail {
+export interface ServicePillar {
   id: string;
-  number: string;
+  letter: string;
   title: string;
   tagline: string;
   description: string;
-  statutoryFramework: string;
-  deliverables: string[];
+  services: string[];
+  benefits: string[];
+  statutoryFocus: string;
   idealFor: string[];
-  metricsDelivered: string;
+  deliveredMetric: string;
+}
+
+export interface AudiencePainPoint {
+  segment: string;
+  subtitle: string;
+  points: string[];
+  solution: string;
+  ctaText: string;
+  targetPage: PageId;
+}
+
+export interface DownloadableResource {
+  id: string;
+  title: string;
+  category: string;
+  format: string;
+  pages: string;
+  description: string;
+  downloadCount: string;
+}
+
+export interface InsightArticle {
+  id: string;
+  title: string;
+  author: string;
+  category: string;
+  readTime: string;
+  date: string;
+  summary: string;
+  keyTakeaway: string;
+  contentSnippet?: string[];
 }
 
 export interface BriefingFormData {
@@ -73,9 +107,11 @@ export interface BriefingFormData {
   roleTitle: string;
   email: string;
   phone: string;
+  sector: 'Council / Local Government' | 'Government Agency' | 'Not-for-Profit / Community' | 'Candidate / Elected Official';
   consultationArea: string;
   estimatedTimeline: string;
   message: string;
+  subscribeNewsletter: boolean;
 }
 
 export interface BookingSlotData {
@@ -85,7 +121,7 @@ export interface BookingSlotData {
   phone: string;
   date: string;
   timeSlot: string;
-  meetingType: 'Virtual Teams/Webex' | 'In-Person (Victoria Square)' | 'At Council Chambers';
+  meetingType: 'Virtual Teams/Webex' | 'In-Person (Victoria Square)' | 'On-Site at Chambers/Office';
   focusArea: string;
   preliminaryNotes: string;
 }
